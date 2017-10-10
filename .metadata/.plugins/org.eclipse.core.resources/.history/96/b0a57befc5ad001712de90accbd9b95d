@@ -19,6 +19,6 @@ public class Item
 	}
 	public String toStringl()
 	{
-		return this.name + ' ' + this.weight;
+		return "";
 	}
 }

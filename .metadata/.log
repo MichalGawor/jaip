@@ -233,3 +233,13 @@ org.eclipse.core.runtime.CoreException: The file does not exist.
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
 !SUBENTRY 1 org.eclipse.core.filebuffers 4 0 2017-10-05 21:56:26.337
 !MESSAGE The file does not exist.
+!SESSION 2017-10-10 15:08:02.441 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-10-10 15:09:05.760
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
