@@ -5,22 +5,18 @@
 		<item value="0" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="468" key="dialogHeight"/>
-		<item value="841" key="dialogWidth"/>
+		<item value="474" key="dialogHeight"/>
+		<item value="847" key="dialogWidth"/>
 		<list key="textEntries">
-			<item value="1"/>
 			<item value="1"/>
 		</list>
 		<list key="orderedElements">
-			<item value="org.eclipse.ant.ui.antShortcut.debug"/>
 			<item value="org.eclipse.egit.ui.CreateRepositoryWizard"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.commands"/>
 			<item value="org.eclipse.ui.wizards"/>
 		</list>
 		<list key="textArray">
-			<item value="debu"/>
 			<item value="git"/>
 		</list>
 	</section>
@@ -29,6 +25,12 @@
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.egit.ui.wizardCategory"/>
 			<item value="org.eclipse.jdt.ui.java"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.jdt.internal.ui.jarpackager.JarPackageWizard" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.jdt.ui.Java"/>
 		</list>
 	</section>
 </section>
