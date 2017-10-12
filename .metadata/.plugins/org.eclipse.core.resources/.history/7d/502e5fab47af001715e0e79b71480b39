@@ -57,35 +57,21 @@ public class MyBag {
 		Item item_c = new Item("fork", 2.0);
 		
 		//put items into default bag
-		
 		test_default.putItem(item_a);
-		System.out.println("Put item " + item_a.toStringl());
 		test_default.putItem(item_b);
-		System.out.println("Put item " + item_b.toStringl());
 		test_default.putItem(item_c);
-		System.out.println("Put item " + item_c.toStringl());
-		
-		//items in bag
-		System.out.println("Items in bag " + test_default.toStringl());
 		
 		//empty default bag
 		test_default.removeALl();
-		System.out.println("Items in bag after emptying " + test_default.toStringl());
-		
+
 		//create custom bag and put items into it
 		MyBag test_custom = new MyBag(2);
-		
-		//put items into custom bag
 		test_custom.putItem(item_a);
-		System.out.println("Put item " + item_a.toStringl());
 		test_custom.putItem(item_b);
-		System.out.println("Put item " + item_b.toStringl());
 		test_custom.putItem(item_c);
-		System.out.println("Put item " + item_c.toStringl());
 		
 		//empty custom bag
 		test_custom.removeALl();
-		System.out.println("Items in bag after emptying " + test_custom.toStringl());
 	}	
 	
 	public static void main(String[] args)
