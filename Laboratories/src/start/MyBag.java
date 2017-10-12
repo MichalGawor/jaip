@@ -50,7 +50,7 @@ public class MyBag {
 				nb_inside++;
 			}
 		}
-		return "Total items inside the bag: " + nb_inside + "\nTotal weight of the bag: " +
+		return "Total items inside the bag: " + nb_inside + '/' + items_arr.length + "\nTotal weight of the bag: " +
 				total_weight + "\n" + ret_str;
 	}
 	
