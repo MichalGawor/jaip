@@ -25,4 +25,9 @@ public class Item
 	{
 		return this.name + ' ' + this.weight;
 	}
+	
+	public double getWeight()
+	{
+		return this.weight;
+	}
 }

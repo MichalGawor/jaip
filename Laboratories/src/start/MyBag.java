@@ -35,17 +35,23 @@ public class MyBag {
 		Arrays.fill(items_arr, null);
 	}
 	
-	public String toStringl()
+	public String toString()
 	{
-		String ret_str ="";
+		String ret_str = "";
+		double total_weight = 0.0;
+		int nb_inside = 0;
+		
 		for(int i=0; i<items_arr.length; i++)
 		{
 			if(items_arr[i] != null)
 			{
-				ret_str += items_arr[i].toStringl() + ' ';
+				ret_str += items_arr[i].toStringl() + '\n';
+				total_weight += items_arr[i].getWeight();
+				nb_inside++;
 			}
 		}
-		return ret_str;
+		return "Total items inside the bag: " + nb_inside + "\nTotal weight of the bag: " +
+				total_weight + "\n" + ret_str;
 	}
 	
 	public static void testMe()
@@ -66,11 +72,11 @@ public class MyBag {
 		System.out.println("Put item " + item_c.toStringl());
 		
 		//items in bag
-		System.out.println("Items in bag " + test_default.toStringl());
+		System.out.println("\n" + test_default.toString());
 		
 		//empty default bag
 		test_default.removeALl();
-		System.out.println("Items in bag after emptying " + test_default.toStringl());
+		System.out.println("Items in bag after emptying \n" + test_default.toString());
 		
 		//create custom bag and put items into it
 		MyBag test_custom = new MyBag(2);
@@ -83,9 +89,12 @@ public class MyBag {
 		test_custom.putItem(item_c);
 		System.out.println("Put item " + item_c.toStringl());
 		
+		//items inside the custom bag
+		System.out.println("\n" + test_custom.toString());
+		
 		//empty custom bag
 		test_custom.removeALl();
-		System.out.println("Items in bag after emptying " + test_custom.toStringl());
+		System.out.println("Items in bag after emptying " + test_custom.toString());
 	}	
 	
 	public static void main(String[] args)
