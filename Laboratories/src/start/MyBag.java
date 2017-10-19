@@ -60,7 +60,7 @@ public class MyBag {
 		MyBag test_default = new MyBag();
 		Item item_a = new Item();
 		Item item_b = new Item("knife", 2.4);
-		Item item_c = new Item("fork", 2.0);
+		Item item_c = new Item("fork", 2.3);
 		
 		//put items into default bag
 		
