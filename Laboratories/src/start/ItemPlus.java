@@ -19,4 +19,8 @@ public class ItemPlus extends Item
 		super(name, weight);
 		this.fName = fname;
 	}
+	public String toStringl()
+	{
+		return super.toStringl() + this.fName.getStringl();
+	}
 }
