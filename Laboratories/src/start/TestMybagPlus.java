@@ -18,7 +18,7 @@ public class TestMybagPlus {
 		
 		//test small bag
 		SmallBag small_a = new SmallBag(); // max size 4, max weight 2.0	
-		System.out.println("Small bag has (size, max weight): (" + small_a.items_arr.length + "," + small_a.maxWeight + ")");
+		System.out.println("\nSmall bag has (size, max weight): (" + small_a.items_arr.length + "," + small_a.maxWeight + ")");
 		
 		small_a.putItem(item_a);
 		small_a.putItem(item_b);

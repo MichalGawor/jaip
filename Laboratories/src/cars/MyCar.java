@@ -21,7 +21,6 @@ public class MyCar {
 	public MyCar(String s)
 	{
 		this();
-		System.out.println(s.split(";|_|\t").length);
 		if(s.split(";|_|\t").length == 3)
 		{
 			if(20<Double.parseDouble(s.split(";|_|\t")[0]) && Double.parseDouble(s.split(";|_|\t")[0])<80)

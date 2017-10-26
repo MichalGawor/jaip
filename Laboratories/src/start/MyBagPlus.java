@@ -8,11 +8,10 @@ public class MyBagPlus extends MyBag{
 		this.maxWeight = weight;
 	}
 	
-	@Override
 	public boolean putItem(Item item)
 	{
 		double currWeight=0.0;
-		for(int i=0; i<super.items_arr.length; i++)
+		for(int i=0; i<super.items_arr.length && items_arr[i]!=null; i++)
 		{
 			currWeight+=super.items_arr[i].getWeight();	
 		}
