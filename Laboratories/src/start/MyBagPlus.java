@@ -14,18 +14,14 @@ public class MyBagPlus extends MyBag{
 		double currWeight=0.0;
 		for(int i=0; i<super.items_arr.length; i++)
 		{
-			if(super.items_arr[i] == null)
-			{
-				if(currWeight + item.getWeight() <= this.maxWeight)
-				{
-					super.items_arr[i] = item;
-					return true;
-				}
-				else
-					return false;
-			}
-			currWeight+=super.items_arr[i].getWeight();
+			currWeight+=super.items_arr[i].getWeight();	
 		}
-		return false;
+		if(currWeight + item.getWeight() <= this.maxWeight)
+		{
+			super.putItem(item);
+			return true;
+		}
+		else
+			return false;
 	}
 }
