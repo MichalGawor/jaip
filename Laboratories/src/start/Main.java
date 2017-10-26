@@ -7,10 +7,14 @@ public class Main {
 		ItemPlus item_a = new ItemPlus("Royal apple 0.2");
 		ItemPlus item_b = new ItemPlus("Spanish", "peach", 1.2);
 		ItemPlus item_c = new ItemPlus("Chiquita", FruitName.BANANA, 0.4);
+		ItemPlus item_d = new ItemPlus("Yellow", FruitName.PLUM, 0.01);
+		ItemPlus item_e = new ItemPlus("Blue", FruitName.PLUM, 0.01);
 		
 		System.out.println(item_a.toStringl());
 		System.out.println(item_b.toStringl());
 		System.out.println(item_c.toStringl());
+		System.out.println(item_d.toStringl());
+		System.out.println(item_e.toStringl());
 		
 		//test small bag
 		SmallBag small_a = new SmallBag(); // max size 4, max weight 2.0	
@@ -18,7 +22,9 @@ public class Main {
 		
 		small_a.putItem(item_a);
 		small_a.putItem(item_b);
-		small_a.putItem(item_c);	
+		small_a.putItem(item_c);
+		small_a.putItem(item_d);
+		small_a.putItem(item_e);
 		System.out.println(small_a.toString());
 		
 		small_a.removeALl();	
