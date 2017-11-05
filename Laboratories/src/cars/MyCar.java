@@ -1,4 +1,9 @@
 package cars;
+import java.lang.NumberFormatException;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class MyCar {
 	protected double tankCapacity;
@@ -25,11 +30,25 @@ public class MyCar {
 		{
 			if(20<Double.parseDouble(s.split(";|_|\t")[0]) && Double.parseDouble(s.split(";|_|\t")[0])<80)
 			{
-				this.tankCapacity = Double.parseDouble(s.split(";|_|\t")[0]);
+				try{
+					this.tankCapacity = Double.parseDouble(s.split(";|_|\t")[0]);
+				} catch(NumberFormatException ex){
+					this.tankCapacity = 40;
+				}
 			}
 			if(3<Double.parseDouble(s.split(";|_|\t")[1]) && Double.parseDouble(s.split(";|_|\t")[1])<20)
-				this.fuelConsumption = Double.parseDouble(s.split(";|_|\t")[1]); 
-			this.maker = CarMakers.convertString(s.split(";|_|\t")[2]);		
+			{
+				try{
+					this.fuelConsumption = Double.parseDouble(s.split(";|_|\t")[1]); 
+				} catch(NumberFormatException ex){
+					this.fuelConsumption = 5;
+				}
+			}
+			try{
+				this.maker = CarMakers.convertString(s.split(";|_|\t")[2]);		
+			} catch(NumberFormatException ex){
+				this.maker = CarMakers.NOTKNOWN;
+			}
 		}
 	}
 	
@@ -63,7 +82,7 @@ public class MyCar {
 		return s + this.maker + "\n\tTank capacity: " + this.fuelLevel +
 				"/" + this.tankCapacity + "\n\tFuel consumption: " +
 				this.fuelConsumption + "\n\tMileage: " + this.mileage + 
-				"\n\tLast trip distance: " + this.lastTrip;
+				"\n\tLast trip distance: " + this.lastTrip + "\n";
 	}
 	
 	public static void testMe()
@@ -116,7 +135,7 @@ public class MyCar {
 				"\tLast trip distance: " + defaultCar.lastTrip + "\n");
 		
 		//test custom car
-		MyCar customCar = new MyCar("60;10_BMW");
+		MyCar customCar = new MyCar("dd;10_BMW");
 		System.out.println("Create customt car. " + 
 				"\nExpected value of operation:\n" +
 				"\tCar manufacturer: BMW\n" +
@@ -163,9 +182,130 @@ public class MyCar {
 				"\tMileage: " + customCar.mileage + "\n" +
 				"\tLast trip distance: " + customCar.lastTrip + "\n");
 	}
-	public static void main(String[] args) 
+	
+	@Test
+	public static void testDefaultMyCar()
 	{
-		testMe();
+		MyCar defaultCar = new MyCar();
+		assertEquals(defaultCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 0.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		//tank too much
+		assertEquals(defaultCar.tankIt(50), false);
+		//tank 30l
+		assertEquals(defaultCar.tankIt(30), true);
+		assertEquals(defaultCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 30.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		//try too long trip
+		assertEquals(defaultCar.startTrip(800), false);
+		//go for trip
+		assertEquals(defaultCar.startTrip(100), true);
+		assertEquals(defaultCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 25.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 100.0\n" +
+				"\tLast trip distance: 100.0\n");
+		//go for second trip
+		assertEquals(defaultCar.startTrip(200), true);
+		assertEquals(defaultCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 15.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 300.0\n" +
+				"\tLast trip distance: 200.0\n");
+	}
+	
+	@Test
+	public static void testCustomMyCar()
+	{
+		//test constructors
+		MyCar customCar = new MyCar("asdf");
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 0.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		customCar = new MyCar("10;20");
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 0.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		customCar = new MyCar("20_20\tBMW;ad");
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: NOTKNOWN\n" +
+				"\tTank capacity: 0.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		customCar = new MyCar("kk;dd_BMW");
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 0.0/40.0\n" +
+				"\tFuel consumption: 5.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		customCar = new MyCar("60;10\tbmw"); 
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 0.0/60.0\n" +
+				"\tFuel consumption: 10.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		//tank too much
+		assertEquals(customCar.tankIt(80), false);
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 0.0/60.0\n" +
+				"\tFuel consumption: 10.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		//tank 50l
+		assertEquals(customCar.tankIt(50), true);
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 50.0/60.0\n" +
+				"\tFuel consumption: 10.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");
+		//try too long trip
+		assertEquals(customCar.startTrip(700), false);
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 50.0/60.0\n" +
+				"\tFuel consumption: 10.0\n" +
+				"\tMileage: 0.0\n" +
+				"\tLast trip distance: 0.0\n");	
+		//go for trip
+		assertEquals(customCar.startTrip(100), true);
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 40.0/60.0\n" +
+				"\tFuel consumption: 10.0\n" +
+				"\tMileage: 100.0\n" +
+				"\tLast trip distance: 100.0\n");
+		//go for second trip
+		assertEquals(customCar.startTrip(200), true);
+		assertEquals(customCar.toString(), 
+				"\tCar manufacturer: BMW\n" +
+				"\tTank capacity: 20.0/60.0\n" +
+				"\tFuel consumption: 10.0\n" +
+				"\tMileage: 300.0\n" +
+				"\tLast trip distance: 200.0\n");	
+	}
+	
+	public static void main(String[] args) {
+		testDefaultMyCar();
 	}
 }
 
