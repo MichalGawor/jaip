@@ -28,27 +28,26 @@ public class MyCar {
 		this();
 		if(s.split(";|_|\t").length == 3)
 		{
-			if(20<Double.parseDouble(s.split(";|_|\t")[0]) && Double.parseDouble(s.split(";|_|\t")[0])<80)
-			{
-				try{
-					this.tankCapacity = Double.parseDouble(s.split(";|_|\t")[0]);
-				} catch(NumberFormatException ex){
-					this.tankCapacity = 40;
-				}
+			double arg0, arg1;
+			try{
+				arg0 = Double.parseDouble(s.split(";|_|\t")[0]);
 			}
-			if(3<Double.parseDouble(s.split(";|_|\t")[1]) && Double.parseDouble(s.split(";|_|\t")[1])<20)
-			{
-				try{
-					this.fuelConsumption = Double.parseDouble(s.split(";|_|\t")[1]); 
-				} catch(NumberFormatException ex){
-					this.fuelConsumption = 5;
-				}
+			catch(NumberFormatException ex){
+				arg0=40;
+			}
+			if(20<arg0 && arg0<80){
+					this.tankCapacity = arg0;
 			}
 			try{
-				this.maker = CarMakers.convertString(s.split(";|_|\t")[2]);		
-			} catch(NumberFormatException ex){
-				this.maker = CarMakers.NOTKNOWN;
+				arg1=Double.parseDouble(s.split(";|_|\t")[1]);
 			}
+			catch(NumberFormatException ex){
+				arg1=5;
+			}
+			if(3<arg1 && arg1<20){
+				this.fuelConsumption = arg1;
+			}
+			this.maker = CarMakers.convertString(s.split(";|_|\t")[2]);		
 		}
 	}
 	
@@ -306,6 +305,7 @@ public class MyCar {
 	
 	public static void main(String[] args) {
 		testDefaultMyCar();
+		testCustomMyCar();
 	}
 }
 
