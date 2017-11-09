@@ -13,6 +13,7 @@ public class MyCar {
 	protected double fuelLevel;
 	protected double lastTrip;
 
+	E1 a = E1.KKK;
 	public MyCar()
 	{
 		this.tankCapacity = 40;

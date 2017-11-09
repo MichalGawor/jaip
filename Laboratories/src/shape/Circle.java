@@ -4,17 +4,21 @@ public class Circle extends Shape{
 	protected int radius;
 	public Circle(int x, int y, int r){
 		super(x, y);
-		this.radius=r;
+		if(r > 0) {
+			this.radius=r;
+		}
+	else
+		throw new IllegalArgumentException("Radius must be bigger than 0");
 	}
 
 	@Override
-	public void moveNothSouth(int len) {
-		this.y_coordinate+=len;	
+	public void moveNorthSouth(int len) {
+		if(len>0)
+			this.y_coordinate+=len;	
 	}
 
 	@Override
 	public void moveEastWest(int len) {
-		this.x_coordinate+=len;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package shape;
 
 public interface Moveable {
-	void moveNothSouth(int len);
+	void moveNorthSouth(int len);
 	void moveEastWest(int len);
 }
 

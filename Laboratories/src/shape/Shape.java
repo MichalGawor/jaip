@@ -11,6 +11,14 @@ public abstract class Shape implements Moveable{
 		this.y_coordinate = y;
 	}
 	
+	public int getX() {
+		return this.x_coordinate;
+	}
+	
+	public int getY() {
+		return this.y_coordinate;
+	}
+	
 	public String toString(){
 		return "[" + this.x_coordinate + "," + this.y_coordinate + "]";
 	}
